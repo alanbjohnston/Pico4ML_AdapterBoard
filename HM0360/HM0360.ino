@@ -1,23 +1,23 @@
-#include "st7735.h"
-#include "DEV_Config.h"
+#include "lib/LCD/st7735.h"
+#include "lib/Config/DEV_Config.h"
 #include <stdlib.h>		
 #include <stdio.h>
-#include "icm20948.h"
-#include "arducam.h"
+#include "lib/icm20948/icm20948.h"
+#include "lib/arducam/arducam.h"
 
 uint8_t image[96*96*2];
 IMU_EN_SENSOR_TYPE result;
 IMU_ST_ANGLES_DATA Angles,  Gyro,  Acce, Magn;
 
-
+struct arducam_config config;
 
 //int main(void)
 void setup()
 {
-	stdio_uart_init();
+//	stdio_uart_init();
 	sleep_ms(1000);
 	ST7735_Init();
-	struct arducam_config config;
+
 	config.sccb = i2c1;
 	config.sccb_mode = I2C_MODE_16_8;
 	config.sensor_address = 0x24;
